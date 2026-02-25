@@ -30,6 +30,12 @@ if not domains:
 df = pd.DataFrame(domains, columns=["domain"])
 counts = df["domain"].value_counts()
 
+# === ТЕКСТОВЫЙ ВЫВОД ===
+print("\n=== Частота DNS-запросов по доменам ===")
+for domain, count in counts.items():
+    print(f"{domain:30}  {count}")
+
+# === ГРАФИК ===
 plt.figure()
 counts.plot(kind="bar")
 plt.xlabel("Домен")
@@ -37,5 +43,6 @@ plt.ylabel("Количество DNS-запросов")
 plt.title("Частота DNS-запросов по доменам")
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig("dns_frequency_by_domain.png")
+
+plt.savefig("dns_frequency_by_domain.png")  
 plt.show()
